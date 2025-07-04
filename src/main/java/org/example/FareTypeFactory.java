@@ -1,7 +1,7 @@
 package org.example;
 
 public class FareTypeFactory {
-    public FareTypeStrategy getFareTypeStrategy(String fareType){
+    public static FareTypeStrategy getFareTypeStrategy(String fareType){
         if(fareType == null){                                       // returns null if fareType entered is null
             return null;
         }
