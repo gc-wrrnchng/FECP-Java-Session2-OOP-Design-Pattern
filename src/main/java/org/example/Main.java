@@ -5,10 +5,16 @@ import java.util.*;
  public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        String rideType;
+        String rideType = "";
         double getDistance;
         double getDuration;
         int option;
+        String fareType;
+        double baseFare = 0;
+        double surcharge = 0;
+        double distanceCost = 0;
+        double durationCost = 0;
+        double totalFare = 0;
 
         do {// UI for selecting options
             System.out.println("\n=== Ride Booking System ===");
@@ -22,7 +28,7 @@ import java.util.*;
 
             switch (option) {
                 case 1: {
-                    System.out.println("=== Book a Ride ===");
+                    System.out.println("\n=== Book a Ride ===");
                     do {
                         System.out.print("Enter Ride Type (standard/premium): ");
                         rideType = scanner.nextLine().toLowerCase();
@@ -73,7 +79,33 @@ import java.util.*;
                     break;
                 }
                 case 2: {
+                    System.out.println("\n=== Calculate Fare ===");
+                    if(rideType.isEmpty()) {
+                        System.out.println("Please book a ride first.");
+                        break;
+                    }
+                    do {
+                        System.out.print("Enter Fare Type (normal/night): ");
+                        fareType = scanner.nextLine().toLowerCase();
 
+                        // Check for eligibility of input for ride type
+                        if (fareType.isEmpty()) {
+                            System.out.println("Fare type must not be empty.");
+                        }
+                        if (!fareType.equals("normal") && !fareType.equals("night")) {
+                            System.out.println("Ride type must only be 'normal' or 'night'.");
+                        }
+                    } while (!fareType.equals("normal") && !fareType.equals("night"));
+
+                    // Fare Strategies and Ride Type strategies to compute fare
+                    totalFare = baseFare + distanceCost + durationCost + surcharge;
+
+                    System.out.printf("Base Fare: %.2f%n", baseFare);
+                    System.out.printf("Distance Cost: %.2f%n", distanceCost);
+                    System.out.printf("Duration Cost: %.2f%n", durationCost);
+                    System.out.printf("Surcharge (Night): %.2f%n", surcharge);
+                    System.out.printf("Total Fare: %.2f%n", totalFare);
+                    break;
                 }
             }
         } while (option != 4);
