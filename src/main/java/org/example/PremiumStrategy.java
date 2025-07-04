@@ -11,4 +11,14 @@ public class PremiumStrategy implements BaseFareStrategy {
         double durationFare = durationMinutes * PER_MINUTE_RATE;
         return BASE_FARE + distanceFare + durationFare;
     }
+
+    @Override
+    public double calculateDistanceFare(double distance) {
+        return distance * PER_KM_RATE;
+    }
+
+    @Override
+    public double calculateDurationFare(int durationMinutes) {
+        return durationMinutes * PER_MINUTE_RATE;
+    }
 }

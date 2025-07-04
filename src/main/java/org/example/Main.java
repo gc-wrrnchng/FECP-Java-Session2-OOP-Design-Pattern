@@ -7,14 +7,14 @@ import java.util.*;
         Scanner scanner = new Scanner(System.in);
         String rideType = "";
         double getDistance = 0;
-        double getDuration = 0;
+        int getDuration = 0;
         int option;
         String fareType;
-        double baseFare = 0;
-        double surcharge = 0;
-        double distanceCost = 0;
-        double durationCost = 0;
-        double totalFare = 0;
+        double baseFare;
+        double surcharge;
+        double distanceCost;
+        double durationCost;
+        double totalFare;
 
         do {// UI for selecting options
             System.out.println("\n=== Ride Booking System ===");
@@ -63,7 +63,7 @@ import java.util.*;
                         System.out.print("Enter Duration (mins): ");
                         // Ensures that input is a number
                         try {
-                            getDuration = scanner.nextDouble();
+                            getDuration = scanner.nextInt();
                             // Ensures that distance is greater than 0
                             if (getDuration <= 0) {
                                 System.out.println("Invalid input. Duration must be greater than 0.");
@@ -98,10 +98,14 @@ import java.util.*;
                     } while (!fareType.equals("normal") && !fareType.equals("night"));
 
                     // Fare Strategies and Ride Type strategies to compute fare
+                    BaseFareStrategy baseFareStrategy = BaseFareStrategyFactory.getFareStrategy(rideType);
                     FareTypeStrategy fareTypeStrategy = FareTypeFactory.getFareTypeStrategy(fareType);
 
+                    distanceCost = baseFareStrategy.calculateDistanceFare(getDistance);
+                    durationCost = baseFareStrategy.calculateDurationFare(getDuration);
+                    baseFare = baseFareStrategy.calculateFare(getDistance, getDuration);
                     surcharge = fareTypeStrategy.applySurcharge(baseFare);
-                    totalFare = baseFare + distanceCost + durationCost + surcharge;
+                    totalFare = baseFare + surcharge;
 
                     System.out.printf("Base Fare: %.2f%n", baseFare);
                     System.out.printf("Distance Cost: %.2f%n", distanceCost);
@@ -118,7 +122,7 @@ import java.util.*;
                     System.out.println("\n--- Receipt ---");
                     System.out.println("Ride Type: " + rideType);
                     System.out.printf("Distance: %.0f km%n", getDistance);
-                    System.out.printf("Duration: %.0f mins%n", getDuration);
+                    System.out.println("Duration: " + getDuration + " mins");
                     System.out.printf("Total Fare: %.2f%n", totalFare);
                     break;
                 }
