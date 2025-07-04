@@ -2,7 +2,7 @@ package org.example;
 
 import java.util.*;
 
-public class Main {
+public class 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String rideType = "";
