@@ -98,6 +98,9 @@ import java.util.*;
                     } while (!fareType.equals("normal") && !fareType.equals("night"));
 
                     // Fare Strategies and Ride Type strategies to compute fare
+                    FareTypeStrategy fareTypeStrategy = FareTypeFactory.getFareTypeStrategy(fareType);
+
+                    surcharge = fareTypeStrategy.applySurcharge(baseFare);
                     totalFare = baseFare + distanceCost + durationCost + surcharge;
 
                     System.out.printf("Base Fare: %.2f%n", baseFare);
