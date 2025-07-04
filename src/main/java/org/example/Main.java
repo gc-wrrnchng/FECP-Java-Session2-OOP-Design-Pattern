@@ -119,6 +119,10 @@ import java.util.*;
                     System.out.printf("Total Fare: %.2f%n", totalFare);
                     break;
                 }
+                case 4: {
+                    System.out.println("=== Thank you for riding with us! ===");
+                    break;
+                }
             }
         } while (option != 4);
     }
