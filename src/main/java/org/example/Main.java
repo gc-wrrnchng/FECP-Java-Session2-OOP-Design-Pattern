@@ -14,7 +14,7 @@ import java.util.*;
         double surcharge;
         double distanceCost;
         double durationCost;
-        double totalFare;
+        double totalFare = 0;
 
         do {// UI for selecting options
             System.out.println("\n=== Ride Booking System ===");
@@ -103,9 +103,9 @@ import java.util.*;
 
                     distanceCost = baseFareStrategy.calculateDistanceFare(getDistance);
                     durationCost = baseFareStrategy.calculateDurationFare(getDuration);
-                    baseFare = baseFareStrategy.calculateFare(getDistance, getDuration);
+                    baseFare = baseFareStrategy.calculateFare(getDistance, getDuration) - distanceCost - durationCost;
                     surcharge = fareTypeStrategy.applySurcharge(baseFare);
-                    totalFare = baseFare + surcharge;
+                    totalFare = baseFare + distanceCost + durationCost + surcharge;
 
                     System.out.printf("Base Fare: %.2f%n", baseFare);
                     System.out.printf("Distance Cost: %.2f%n", distanceCost);
