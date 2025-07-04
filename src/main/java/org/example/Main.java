@@ -6,8 +6,8 @@ import java.util.*;
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         String rideType = "";
-        double getDistance;
-        double getDuration;
+        double getDistance = 0;
+        double getDuration = 0;
         int option;
         String fareType;
         double baseFare = 0;
@@ -104,6 +104,18 @@ import java.util.*;
                     System.out.printf("Distance Cost: %.2f%n", distanceCost);
                     System.out.printf("Duration Cost: %.2f%n", durationCost);
                     System.out.printf("Surcharge (Night): %.2f%n", surcharge);
+                    System.out.printf("Total Fare: %.2f%n", totalFare);
+                    break;
+                }
+                case 3: {
+                    if (rideType.isEmpty()) {
+                        System.out.println("No rides booked yet.");
+                        break;
+                    }
+                    System.out.println("\n--- Receipt ---");
+                    System.out.println("Ride Type: " + rideType);
+                    System.out.printf("Distance: %.0f km%n", getDistance);
+                    System.out.printf("Duration: %.0f mins%n", getDuration);
                     System.out.printf("Total Fare: %.2f%n", totalFare);
                     break;
                 }
