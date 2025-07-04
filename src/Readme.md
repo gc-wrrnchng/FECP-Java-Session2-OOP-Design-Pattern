@@ -29,3 +29,9 @@ This project is a simple ride fare calculator that allows users to book rides, c
 
    ![img_3.png](img_3.png)
 
+### Members
+
+- **Warren Denzel Cheng**
+- **Godfrey Angelo Convento**
+- **Jahren Hans Dayag**
+
