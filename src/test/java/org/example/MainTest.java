@@ -1,15 +1,23 @@
 package org.example;
 
+import org.example.basefare.PremiumRide;
+import org.example.basefare.RideTypeFactory;
+import org.example.basefare.RideTypeStrategy;
+import org.example.basefare.StandardRide;
+import org.example.surcharge.FareTypeFactory;
+import org.example.surcharge.FareTypeStrategy;
+import org.example.surcharge.NightFare;
+import org.example.surcharge.NormalFare;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 class MainTest {
-    private StandardStrategy standardStrategy;
-    private PremiumStrategy premiumStrategy;
-    private normalFare normalStrategy;
-    private nightFare nightStrategy;
+    private StandardRide standardStrategy;
+    private PremiumRide premiumStrategy;
+    private NormalFare normalStrategy;
+    private NightFare nightStrategy;
 
     private double distance;
     private int duration;
@@ -19,10 +27,10 @@ class MainTest {
 
     @BeforeEach
     void setup() {
-        standardStrategy = new StandardStrategy();
-        premiumStrategy = new PremiumStrategy();
-        normalStrategy = new normalFare();
-        nightStrategy = new nightFare();
+        standardStrategy = new StandardRide();
+        premiumStrategy = new PremiumRide();
+        normalStrategy = new NormalFare();
+        nightStrategy = new NightFare();
         distance = 10;
         duration = 5;
         standardBaseFare = 15;
@@ -72,19 +80,19 @@ class MainTest {
     @Test
     void testGetFareTypeStrategyReturnsNormal() {
         FareTypeStrategy strategy = FareTypeFactory.getFareTypeStrategy("normal");
-        assertInstanceOf(normalFare.class, strategy);
+        assertInstanceOf(NormalFare.class, strategy);
     }
 
     @Test
     void testGetTypeStrategyReturnsNight() {
         FareTypeStrategy strategy = FareTypeFactory.getFareTypeStrategy("night");
-        assertInstanceOf(nightFare.class, strategy);
+        assertInstanceOf(NightFare.class, strategy);
     }
 
     @Test
     void testGetFareTypeStrategyCaseSensitivity() {
         FareTypeStrategy strategy = FareTypeFactory.getFareTypeStrategy("NIGHT");
-        assertInstanceOf(nightFare.class, strategy);
+        assertInstanceOf(NightFare.class, strategy);
     }
 
     @Test
@@ -97,33 +105,33 @@ class MainTest {
 
     @Test
     void testGetFareStrategyReturnsStandard() {
-        BaseFareStrategy strategy = BaseFareStrategyFactory.getFareStrategy("standard");
-        assertInstanceOf(StandardStrategy.class, strategy);
+        RideTypeStrategy strategy = RideTypeFactory.getFareStrategy("standard");
+        assertInstanceOf(StandardRide.class, strategy);
     }
 
     @Test
     void testGetFareStrategyReturnsPremium() {
-        BaseFareStrategy strategy = BaseFareStrategyFactory.getFareStrategy("premium");
-        assertInstanceOf(PremiumStrategy.class, strategy);
+        RideTypeStrategy strategy = RideTypeFactory.getFareStrategy("premium");
+        assertInstanceOf(PremiumRide.class, strategy);
     }
 
     @Test
     void testGetFareStrategyCaseSensitivity() {
-        BaseFareStrategy strategy = BaseFareStrategyFactory.getFareStrategy("PREMIUM");
-        assertInstanceOf(PremiumStrategy.class, strategy);
+        RideTypeStrategy strategy = RideTypeFactory.getFareStrategy("PREMIUM");
+        assertInstanceOf(PremiumRide.class, strategy);
     }
 
     @Test
     void testGetFareStrategyUnknownType() {
         Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-            BaseFareStrategyFactory.getFareStrategy("primo");
+            RideTypeFactory.getFareStrategy("primo");
         });
         assertEquals("Unknown ride type: primo", exception.getMessage());
     }
 
     @Test
     void testApplySurchargeAddsNightFee() {
-        FareTypeStrategy nightFare = new nightFare();
+        FareTypeStrategy nightFare = new NightFare();
 
         double baseFare = 150.0;
         double expected = baseFare + 70.0;
@@ -134,13 +142,13 @@ class MainTest {
 
     @Test
     void testGetFareTypeReturnsNight() {
-        FareTypeStrategy nightFare = new nightFare();
+        FareTypeStrategy nightFare = new NightFare();
         assertEquals("Night", nightFare.getFareType());
     }
 
     @Test
     void testApplySurchargeAddsNormalFee() {
-        FareTypeStrategy normalFare = new normalFare();
+        FareTypeStrategy normalFare = new NormalFare();
 
         double baseFare = 200.0;
         double expected = baseFare + 10.0;
@@ -151,7 +159,7 @@ class MainTest {
 
     @Test
     void testGetFareTypeReturnsNormal() {
-        FareTypeStrategy normalFare = new normalFare();
+        FareTypeStrategy normalFare = new NormalFare();
         assertEquals("Normal", normalFare.getFareType());
     }
 
