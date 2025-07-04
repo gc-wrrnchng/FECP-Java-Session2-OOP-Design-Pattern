@@ -13,7 +13,7 @@ public class FareTypeFactory {
                 return new normalFare();                            // returns computed normal fare
 
             default:
-                return null;
+                throw new IllegalArgumentException("Unknown fare type: " + fareType);
         }
     }
 }
