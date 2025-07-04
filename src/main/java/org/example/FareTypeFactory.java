@@ -1,16 +1,16 @@
 package org.example;
 
 public class FareTypeFactory {
-    public static FareTypeStrategy getFareTypeStrategy(String fareType){
-        if(fareType == null){
+    public FareTypeStrategy getFareTypeStrategy(String fareType){
+        if(fareType == null){                                       // returns null if fareType entered is null
             return null;
         }
-        switch(fareType.toLowerCase()){
+        switch(fareType.toLowerCase()){                             // converts input to lowercase
             case "night":
-                return new nightFare();
+                return new nightFare();                             // returns computed night fare
 
             case "normal":
-                return new normalFare();
+                return new normalFare();                            // returns computed normal fare
 
             default:
                 return null;
