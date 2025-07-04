@@ -1,9 +1,9 @@
-package org.example;
+package org.example.basefare;
 
-public class StandardStrategy implements BaseFareStrategy {
-    private static final double BASE_FARE = 15.0;
-    private static final double PER_KM_RATE = 10.0;
-    private static final double PER_MINUTE_RATE = 5.0;
+public class PremiumRide implements RideTypeStrategy {
+    private static final double BASE_FARE = 20.0;
+    private static final double PER_KM_RATE = 15.0;
+    private static final double PER_MINUTE_RATE = 10.0;
 
     @Override
     public double calculateFare(double distance, int durationMinutes) {
@@ -21,5 +21,4 @@ public class StandardStrategy implements BaseFareStrategy {
     public double calculateDurationFare(int durationMinutes) {
         return durationMinutes * PER_MINUTE_RATE;
     }
-
 }

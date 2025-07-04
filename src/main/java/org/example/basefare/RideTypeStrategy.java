@@ -1,6 +1,6 @@
-package org.example;
+package org.example.basefare;
 
-public interface BaseFareStrategy {
+public interface RideTypeStrategy {
     double calculateFare(double distance, int durationMinutes);
 
     double calculateDistanceFare(double distance);

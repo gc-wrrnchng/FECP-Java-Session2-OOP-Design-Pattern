@@ -1,5 +1,10 @@
 package org.example;
 
+import org.example.basefare.RideTypeStrategy;
+import org.example.basefare.RideTypeFactory;
+import org.example.surcharge.FareTypeFactory;
+import org.example.surcharge.FareTypeStrategy;
+
 import java.util.*;
 
 public class Main {
@@ -98,12 +103,12 @@ public class Main {
                     } while (!fareType.equals("normal") && !fareType.equals("night"));
 
                     // Fare Strategies and Ride Type strategies to compute fare
-                    BaseFareStrategy baseFareStrategy = BaseFareStrategyFactory.getFareStrategy(rideType);
+                    RideTypeStrategy rideTypeStrategy = RideTypeFactory.getFareStrategy(rideType);
                     FareTypeStrategy fareTypeStrategy = FareTypeFactory.getFareTypeStrategy(fareType);
 
-                    distanceCost = baseFareStrategy.calculateDistanceFare(getDistance);
-                    durationCost = baseFareStrategy.calculateDurationFare(getDuration);
-                    baseFare = baseFareStrategy.calculateFare(getDistance, getDuration) - distanceCost - durationCost;
+                    distanceCost = rideTypeStrategy.calculateDistanceFare(getDistance);
+                    durationCost = rideTypeStrategy.calculateDurationFare(getDuration);
+                    baseFare = rideTypeStrategy.calculateFare(getDistance, getDuration) - distanceCost - durationCost;
                     surcharge = fareTypeStrategy.applySurcharge(baseFare);
                     totalFare = baseFare + distanceCost + durationCost + surcharge;
 
