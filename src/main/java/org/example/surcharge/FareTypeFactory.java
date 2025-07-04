@@ -1,4 +1,4 @@
-package org.example;
+package org.example.surcharge;
 
 public class FareTypeFactory {
     public static FareTypeStrategy getFareTypeStrategy(String fareType){
@@ -7,10 +7,10 @@ public class FareTypeFactory {
         }
         switch(fareType.toLowerCase()){                             // converts input to lowercase
             case "night":
-                return new nightFare();                             // returns computed night fare
+                return new NightFare();                             // returns computed night fare
 
             case "normal":
-                return new normalFare();                            // returns computed normal fare
+                return new NormalFare();                            // returns computed normal fare
 
             default:
                 return null;

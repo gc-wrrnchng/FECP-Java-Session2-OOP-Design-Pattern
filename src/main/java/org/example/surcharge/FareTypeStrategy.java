@@ -1,4 +1,4 @@
-package org.example;
+package org.example.surcharge;
 
 public interface FareTypeStrategy {
     double applySurcharge(double baseFare);

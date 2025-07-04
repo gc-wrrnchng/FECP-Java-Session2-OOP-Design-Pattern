@@ -1,6 +1,6 @@
-package org.example;
+package org.example.surcharge;
 
-public class nightFare implements FareTypeStrategy{
+public class NightFare implements FareTypeStrategy {
     private static final double SURCHARGE_FEE_NIGHT = 70.0;                     // constant value of surcharge fee for night
 
     @Override

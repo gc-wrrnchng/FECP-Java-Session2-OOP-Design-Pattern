@@ -1,6 +1,6 @@
-package org.example;
+package org.example.surcharge;
 
-public class normalFare implements FareTypeStrategy {
+public class NormalFare implements FareTypeStrategy {
     private static final double SURCHARGE_FEE_NORMAL = 10.0;                // constant value of surcharge fee for normal
 
     @Override
