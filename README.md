@@ -7,18 +7,27 @@ This project is a simple ride fare calculator that allows users to book rides, c
 ### Project structure
 
 ```
-src/main/java/org/example/
-├── Main.java
-├── basefare/
-│   ├── PremiumRide.java
-│   ├── RideTypeFactory.java
-│   ├── RideTypeStrategy.java
-│   └── StandardRide.java
-└── surcharge/
-    ├── FareTypeFactory.java
-    ├── FareTypeStrategy.java
-    ├── NightFare.java
-    └── NormalFare.java
+src/
+├── main/
+│   └── java/
+│       └── org/
+│           └── example/
+│               ├── Main.java
+│               ├── basefare/
+│               │   ├── PremiumRide.java
+│               │   ├── RideTypeFactory.java
+│               │   ├── RideTypeStrategy.java
+│               │   └── StandardRide.java
+│               └── surcharge/
+│                   ├── FareTypeFactory.java
+│                   ├── FareTypeStrategy.java
+│                   ├── NightFare.java
+│                   └── NormalFare.java
+└── test/
+    └── java/
+        └── org/
+            └── example/
+                └── MainTest.java
 ```
 
 ### Features
